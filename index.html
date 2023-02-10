@@ -12,16 +12,18 @@
   </head>
   <body>
     <div id="app">
-      <div
-        v-for="hole in moleHoles"
-        class="moleHole"
-        :class="{ mole: hole.mole}"
-        @click="mole(hole)"
-      >
-    <h1 v-if="hole.mole" class="moleInHole">MOLE</h1>
+      <button @click="play" :disabled="isPlaying">Start Game</button>
+      <div id="game">
+        <div
+          v-for="hole in moleHoles"
+          class="moleHole"
+          :class="{ mole: hole.mole}"
+          @click="whackMole(hole)"
+        >
+          <h1 v-if="hole.mole" class="moleInHole">MOLE</h1>
+        </div>
+      </div>
     </div>
-    </div>
-
     <script src="app.js" async defer></script>
   </body>
 </html>

@@ -15,15 +15,46 @@ const app = Vue.createApp({
       isPlaying: false,
       molePop: null,
       molePopDelay: null,
+      moleToPop: null,
+      playtime: 30,
+      molesWhaced: 0,
     };
   },
   methods: {
-    mole(hole) {
-      hole.mole = !hole.mole;
+    play() {
+      this.isPlaying = !this.isPlaying;
+      this.popAMole();
     },
+
     popAMole() {
+      this.moleToPop = Math.floor(Math.random() * 9);
       this.molePop = 500 + Math.random() * 1500;
+      setTimeout(() => {
+        this.moleHoles[this.moleToPop].mole = true;
+        this.hideAMole(this.moleToPop);
+        if (this.isPlaying) {
+          this.popAMole();
+        }
+      }, this.molePop);
+
+      console.log(this.moleToPop);
+      console.log(this.molePop);
     },
+    hideAMole(moleNo) {
+      this.molePopDelay = 200 + Math.random() * 1000;
+      setTimeout(() => {
+        this.moleHoles[moleNo].mole = false;
+      }, this.molePopDelay);
+    },
+    whackMole(hole){
+      if(hole.mole){
+        this.molesWhaced++
+        console.log(this.molesWhaced)
+      }else console.log('MISS')
+    }
+  },
+  mounted() {
+    console.log("Mounted");
   },
 });
 

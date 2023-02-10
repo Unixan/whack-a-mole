@@ -4,8 +4,15 @@
 }
 
 #app {
-  width: 100vw;
   height: 100vh;
+  display: flex;
+  gap: 80px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
   display: grid;
   grid-template-columns: repeat(3, 150px);
   grid-template-rows: repeat(3, 150px);
