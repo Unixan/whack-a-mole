@@ -49,6 +49,7 @@ const app = Vue.createApp({
     whackMole(hole){
       if(hole.mole){
         this.molesWhaced++
+        hole.mole = false
         console.log(this.molesWhaced)
       }else console.log('MISS')
     }
