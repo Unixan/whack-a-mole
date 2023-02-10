@@ -25,11 +25,11 @@
   background: rgb(89, 89, 89);
   height: 100%;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .moleHole.mole {
-  opacity: 1;
+  background:rgb(253, 0, 0)
 }
 
 .moleInHole {
