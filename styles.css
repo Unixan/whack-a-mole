@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+  gap: 40px;
+  justify-content: center;
+  align-content: center;
+}
+
+.moleHole {
+  background: rgb(89, 89, 89);
+  height: 100%;
+  border-radius: 10%;
+  opacity: 0.5;
+}
+
+.moleHole.mole {
+  opacity: 1;
+}
+
+.moleInHole {
+  text-align: center;
+}
