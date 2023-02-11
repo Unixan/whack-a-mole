@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #app {
@@ -23,15 +25,39 @@
 }
 
 .moleHole {
-  max-width: 150px;
+  max-width: 100%;
   object-fit: contain;
   opacity: 1;
 }
 
-.moleHole.mole {
-  background: rgb(253, 0, 0);
+.playFrame {
+  position: fixed;
+  text-align: center;
+  height: fit-content;
+  background: blue;
+  color: white;
+  padding: 20px 100px;
+  border: 10px solid black;
+  border-radius: 20% / 50%;
+  z-index: 1;
 }
 
-.moleInHole {
+.playButton{
+  color: white;
+  padding: 10px;
+  font-size: x-large;
+  font-weight: bolder;
+  border: solid green 4px;
+  margin: 10px auto;
+  width: fit-content;
+  border-radius: 50%;
+  background: red;
+}
+
+.notPlaying {
+  opacity: 0.5;
+}
+
+.timer{
   text-align: center;
 }

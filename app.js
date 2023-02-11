@@ -16,16 +16,22 @@ const app = Vue.createApp({
       molePop: null,
       molePopDelay: null,
       moleToPop: null,
-      playtime: 30,
-      molesWhaced: 0,
+      molesWhacked: 0,
       mole: "IMG/Mole.png",
-      molehole: "IMG/Hole.png"
+      molehole: "IMG/Hole.png",
+      playTimeLeft: 30,
+      gameOver: false,
+      pop: new Audio("SOUNDS/molePop.mp3")
     };
   },
   methods: {
     play() {
+      this.molesWhacked = 0;
       this.isPlaying = !this.isPlaying;
+      this.gameOver = false;
+      this.playTimeLeft = 30;
       this.popAMole();
+      this.startCountdown();
     },
 
     popAMole() {
@@ -34,6 +40,7 @@ const app = Vue.createApp({
       setTimeout(() => {
         this.moleHoles[this.moleToPop].mole = true;
         this.hideAMole(this.moleToPop);
+        this.pop.play()
         if (this.isPlaying) {
           this.popAMole();
         }
@@ -48,18 +55,32 @@ const app = Vue.createApp({
         this.moleHoles[moleNo].mole = false;
       }, this.molePopDelay);
     },
-    whackMole(hole){
-      if(hole.mole){
-        this.molesWhaced++
-        hole.mole = false
-        console.log(this.molesWhaced)
-      }else console.log('MISS')
+    whackMole(hole) {
+      if (hole.mole) {
+        this.molesWhacked++;
+        hole.mole = false;
+        console.log(this.molesWhaced);
+      } else console.log("MISS");
     },
-    moleInHole(hole){
-      if(hole.mole){
-        return this.mole
-      }else{return this.molehole}
-    }
+    moleInHole(hole) {
+      if (hole.mole) {
+        return this.mole;
+      } else {
+        return this.molehole;
+      }
+    },
+    startCountdown() {
+      if (this.isPlaying) {
+        setTimeout(() => {
+          this.playTimeLeft--;
+          this.startCountdown();
+        }, 1000);
+      }
+      if (this.playTimeLeft < 0) {
+        this.isPlaying = false;
+        this.gameOver = true;
+      }
+    },
   },
   mounted() {
     console.log("Mounted");
