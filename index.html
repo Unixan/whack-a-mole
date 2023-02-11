@@ -14,14 +14,13 @@
     <div id="app">
       <button @click="play" :disabled="isPlaying">Start Game</button>
       <div id="game">
-        <div
+        <img
           v-for="hole in moleHoles"
+          :src="moleInHole(hole)"
           class="moleHole"
-          :class="{ mole: hole.mole}"
+          
           @click="whackMole(hole)"
-        >
-          <h1 v-if="hole.mole" class="moleInHole">MOLE</h1>
-        </div>
+        />
       </div>
     </div>
     <script src="app.js" async defer></script>

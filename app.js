@@ -18,6 +18,8 @@ const app = Vue.createApp({
       moleToPop: null,
       playtime: 30,
       molesWhaced: 0,
+      mole: "IMG/Mole.png",
+      molehole: "IMG/Hole.png"
     };
   },
   methods: {
@@ -52,6 +54,11 @@ const app = Vue.createApp({
         hole.mole = false
         console.log(this.molesWhaced)
       }else console.log('MISS')
+    },
+    moleInHole(hole){
+      if(hole.mole){
+        return this.mole
+      }else{return this.molehole}
     }
   },
   mounted() {
