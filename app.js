@@ -22,6 +22,7 @@ const app = Vue.createApp({
       playTimeLeft: 30,
       gameOver: false,
       pop: new Audio("SOUNDS/molePop.mp3"),
+      hammerHit: new Audio("SOUNDS/Bonk-sound-effect.mp3"),
       timeOuts: [],
       flash: false,
     };
@@ -60,9 +61,11 @@ const app = Vue.createApp({
     whackMole(hole) {
       //Determines if hole whacked contains mole or not and gives points accordingly
       if (hole.mole) {
+        this.hammerHit.load();
+        this.hammerHit.play();
         this.molesWhacked++;
         hole.mole = false;
-      } else console.log("MISS");
+      }
     },
     moleInHole(hole) {
       if (hole.mole) {
