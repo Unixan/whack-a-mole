@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #d0e4f5 url("IMG/grass.jpg") repeat fixed 0 0;
 }
 
 #game {
@@ -42,7 +43,7 @@
   z-index: 1;
 }
 
-.playButton{
+.playButton {
   color: white;
   padding: 10px;
   font-size: x-large;
@@ -50,14 +51,60 @@
   border: solid green 4px;
   margin: 10px auto;
   width: fit-content;
-  border-radius: 50%;
+  border-radius: 40px;
   background: red;
+  user-select: none;
+  cursor: pointer;
 }
 
 .notPlaying {
   opacity: 0.5;
 }
 
-.timer{
+.timer {
+  display: flex;
+  padding: 4px;
+  flex-direction: column;
+  align-items: center;
+  border: solid black 5px;
+  padding: 10px;
+  font-size: x-large;
+  border-radius: 20px;
+  background: blue;
+  color: white;
+  width: 300px;
+}
+
+.gameOverScreen {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gameOver {
+  border: solid red 10px;
   text-align: center;
+  border-radius: 100px;
+  padding: 40px;
+  font-size: 300%;
+  font-weight: bolder;
+  background: black;
+  color: rgb(255, 96, 96);
+}
+
+.gameOver.flash {
+  background: rgb(255, 96, 96);
+  color: black;
+}
+
+.score {
+  text-align: center;
+  border: solid blue 5px;
+  padding: 10px;
+  font-size: x-large;
+  border-radius: 20px;
+  background: green;
+  color: white;
 }

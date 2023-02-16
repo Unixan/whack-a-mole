@@ -21,7 +21,9 @@ const app = Vue.createApp({
       molehole: "IMG/Hole.png",
       playTimeLeft: 30,
       gameOver: false,
-      pop: new Audio("SOUNDS/molePop.mp3")
+      pop: new Audio("SOUNDS/molePop.mp3"),
+      timeOuts: [],
+      flash: false,
     };
   },
   methods: {
@@ -33,33 +35,33 @@ const app = Vue.createApp({
       this.popAMole();
       this.startCountdown();
     },
-
     popAMole() {
       this.moleToPop = Math.floor(Math.random() * 9);
       this.molePop = 500 + Math.random() * 1500;
-      setTimeout(() => {
-        this.moleHoles[this.moleToPop].mole = true;
-        this.hideAMole(this.moleToPop);
-        this.pop.play()
-        if (this.isPlaying) {
-          this.popAMole();
-        }
-      }, this.molePop);
-
-      console.log(this.moleToPop);
-      console.log(this.molePop);
+      this.timeOuts.push(
+        setTimeout(() => {
+          this.moleHoles[this.moleToPop].mole = true;
+          this.hideAMole(this.moleToPop);
+          this.pop.load();
+          this.pop.play();
+          if (this.isPlaying) {
+            this.popAMole();
+          }
+        }, this.molePop)
+      );
     },
     hideAMole(moleNo) {
+      //Hides given mole after random time passed
       this.molePopDelay = 200 + Math.random() * 1000;
       setTimeout(() => {
         this.moleHoles[moleNo].mole = false;
       }, this.molePopDelay);
     },
     whackMole(hole) {
+      //Determines if hole whacked contains mole or not and gives points accordingly
       if (hole.mole) {
         this.molesWhacked++;
         hole.mole = false;
-        console.log(this.molesWhaced);
       } else console.log("MISS");
     },
     moleInHole(hole) {
@@ -79,11 +81,16 @@ const app = Vue.createApp({
       if (this.playTimeLeft < 0) {
         this.isPlaying = false;
         this.gameOver = true;
+        for (t in this.timeOuts) {
+          clearTimeout(this.timeOuts[t]);
+        }
+        this.timeOuts.push(
+          setInterval(() => {
+            this.flash = !this.flash;
+          }, 500)
+        );
       }
     },
-  },
-  mounted() {
-    console.log("Mounted");
   },
 });
 

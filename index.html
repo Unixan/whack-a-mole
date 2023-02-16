@@ -8,11 +8,10 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   </head>
   <body>
     <div id="app">
-      <!-- <button @click="play" :disabled="isPlaying">Start Game</button> -->
       <div v-if="!isPlaying && !gameOver" class="playFrame">
         Lets whack some moles!
         <div class="playButton" @click="play()">GO</div>
@@ -28,14 +27,12 @@
       <div v-if="!gameOver" class="timer" id="timer">
         <div>Time left:</div>
         {{playTimeLeft}}
-        <div class="score" id="score">Score: {{molesWhacked}}</div>
       </div>
-      <div v-if="gameOver">
-        <div>
-          GAME OVER!
-        </div>
-        <div>Total Score: {{molesWhacked}}</div>
-        <div @click="play()" class="playButton" style="border-radius: 20% / 50%;">Restart?</div>
+      <div v-if="!gameOver"class="score" id="score">Score: {{molesWhacked}}</div>
+      <div v-if="gameOver" class="gameOverScreen">
+        <div class="gameOver" :class="{flash: flash}">GAME OVER!</div>
+        <div class="score">Total Score: {{molesWhacked}}</div>
+        <div @click="play()" class="playButton">Restart?</div>
       </div>
     </div>
     <script src="app.js" async defer></script>
