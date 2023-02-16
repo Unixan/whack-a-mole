@@ -29,6 +29,7 @@ const app = Vue.createApp({
   },
   methods: {
     play() {
+      this.timeOuts = [];
       this.molesWhacked = 0;
       this.isPlaying = !this.isPlaying;
       this.gameOver = false;
